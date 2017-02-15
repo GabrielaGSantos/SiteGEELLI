@@ -1559,12 +1559,12 @@
 	#banner-wrapper {
 		position: relative;
 		overflow: hidden;
-		background: #fff;
-		color: #fff;
+		background: #1EF17D;
+		color: #000;
 		text-align: center;
-		border-top: solid 2px #e5e5e5;
-		border-bottom: solid 2px #e5e5e5;
-		box-shadow: inset 0px -8px 0px 0px #fff, inset 0px -10px 0px 0px #e5e5e5, inset 0px 8px 0px 0px #fff, inset 0px 10px 0px 0px #e5e5e5;
+		border-top: solid 2px #000;
+		border-bottom: solid 2px #000;
+		box-shadow: inset 0px -8px 0px 0px #fff, inset 0px -10px 0px 0px #fff, inset 0px 8px 0px 0px #fff, inset 0px 10px 0px 0px #fff;
 	}
 
 		#banner-wrapper .inner {
@@ -1972,7 +1972,7 @@
 					width: 35px;
 					height: 141px;
 					margin-top: -70px;
-					background: url("images/bracket.svg");
+				/*	background: url("images/bracket.svg");*/
 					opacity: 0.15;
 				}
 
