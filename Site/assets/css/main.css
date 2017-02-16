@@ -1449,7 +1449,7 @@
 		-webkit-appearance: none;
 		position: relative;
 		display: inline-block;
-		background: #ed786a;
+		background: #2ECB3F;
 		color: #fff !important;
 		text-transform: uppercase;
 		border-radius: 4px;
@@ -1477,7 +1477,7 @@
 		input[type="reset"]:hover,
 		button:hover,
 		.button:hover {
-			background: #fd887a;
+			background: #2ECB3F;
 		}
 
 		input[type="button"]:active,
@@ -1485,7 +1485,7 @@
 		input[type="reset"]:active,
 		button:active,
 		.button:active {
-			background: #ed786a;
+			background: #2ECB3F;
 		}
 
 		input[type="button"].alt,
@@ -1548,8 +1548,13 @@
 
 	#header-wrapper {
 		position: relative;
-		background: #fff;
+		background: url("../../images/livro.jpg");
 		text-align: center;
+		background-size:cover;
+	}
+
+	#header-wrapper b{
+		color: #000;
 	}
 
 		#header-wrapper p {
@@ -1559,7 +1564,7 @@
 	#banner-wrapper {
 		position: relative;
 		overflow: hidden;
-		background: #1EF17D;
+		background: #fff;
 		color: #000;
 		text-align: center;
 		border-top: solid 2px #000;
@@ -1568,7 +1573,7 @@
 	}
 
 		#banner-wrapper .inner {
-			background: url("../../images/banner.jpg");
+			background: url("../../images/ifmt.png"); 
 			background-size: cover;
 		}
 
@@ -1579,14 +1584,18 @@
 	#features-wrapper {
 		position: relative;
 		overflow: hidden;
-		background: #fff;
+		background: #000;
 		text-align: center;
+		color: #A0A0A3;
 	}
 
 		#features-wrapper p {
 			text-align: center;
 		}
 
+		#features-wrapper h3, strong, b{
+			color: #CCCED1;
+		}
 		#features-wrapper .actions {
 			margin-top: 1.25em;
 		}
@@ -1628,14 +1637,14 @@
 
 	#header {
 		position: relative;
-		border-bottom: solid 2px #e5e5e5;
-		box-shadow: inset 0px -8px 0px 0px #fff, inset 0px -10px 0px 0px #e5e5e5;
+		border-bottom:2px;
+		box-shadow: inset 0px 0px 0px 0px #fff, inset 0px 0px 0px 0px #e5e5e5;
 	}
 
 		#header h1 {
 			font-family: 'Arvo';
 			font-weight: 700;
-			color: #ed786a;
+			color: #2ECB3F;
 			text-shadow: 0.05em 0.075em 0 rgba(0, 0, 0, 0.1);
 		}
 
@@ -1646,7 +1655,7 @@
 		#header p {
 			text-transform: uppercase;
 			font-weight: 400;
-			color: #888;
+			color: #000;
 		}
 
 /* Nav */
@@ -1660,13 +1669,19 @@
 			text-decoration: none;
 			text-transform: uppercase;
 			font-weight: 400;
-			color: #777;
+			color: #000;
 			outline: 0;
+		}
+		#nav b{
+			color: #000;
+		}
+		#nav strong{
+			color: #000;
 		}
 
 			#nav > ul > li > a:before {
 				display: inline-block;
-				background: #878787;
+				background: #000;
 				color: #e4e4e4;
 				width: 1.65em;
 				height: 1.65em;
