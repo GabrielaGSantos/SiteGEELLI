@@ -1573,7 +1573,7 @@
 	}
 
 		#banner-wrapper .inner {
-			background: url("../../images/ifmt.png"); 
+			background: url("../../images/ifmt.jpg"); 
 			background-size: cover;
 		}
 
@@ -1987,7 +1987,7 @@
 					width: 35px;
 					height: 141px;
 					margin-top: -70px;
-				/*	background: url("images/bracket.svg");*/
+					/*background: */
 					opacity: 0.15;
 				}
 
