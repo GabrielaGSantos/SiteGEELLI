@@ -1190,15 +1190,20 @@
 
 /* Image */
 
+	
 	.image {
 		-moz-transition: opacity 0.25s ease-in-out;
 		-webkit-transition: opacity 0.25s ease-in-out;
 		-ms-transition: opacity 0.25s ease-in-out;
 		transition: opacity 0.25s ease-in-out;
 		display: inline-block;
-		border: solid 6px #ebebeb !important;
+		border: solid 6px #000 !important;
 	}
 
+	.whiteborder .image{
+		border: solid 6px #FFF !important;
+	}
+	
 		.image:hover {
 			opacity: 0.9;
 		}
@@ -1275,7 +1280,7 @@
 	}
 
 	ul.divided li {
-		border-top: solid 2px #e5e5e5;
+		border-top: solid 2px #042E03;
 	}
 
 		ul.divided li:first-child {
@@ -2502,3 +2507,6 @@
 			}
 
 	}
+
+
+	
