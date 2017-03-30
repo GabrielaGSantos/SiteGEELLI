@@ -1153,7 +1153,7 @@
 
 	hr {
 		border: 0;
-		border-top: solid 1px #ddd;
+		border-top: solid 3px #000;
 	}
 
 	blockquote {
@@ -1280,7 +1280,7 @@
 	}
 
 	ul.divided li {
-		border-top: solid 2px #042E03;
+		border-top: solid 2px #000;
 	}
 
 		ul.divided li:first-child {
