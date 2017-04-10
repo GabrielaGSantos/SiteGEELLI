@@ -1,22 +1,27 @@
 {
-  "name": "site",
+  "name": "geelli",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "dependencies": {
     "express": "^4.14.1",
-    "node-php": "0.0.1",
-    "php": "0.0.1",
-    "php-cgi": "^0.2.0"
+    "mysql": "*",
+    "cors": "*",
+    "bcryptjs":"*",
+    "jsonwebtoken":"*",
+    "body-parser":"*",
+    "passport":"*",
+    "passport-jwt":"*",
+    "node-model.js":"*"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GabrielaGSantos/SiteGEELLI.git"
+    "url": "git+ssh://git@github.com/GabrielaGSantos/SiteGEELLI.git"
   },
   "author": "",
   "license": "ISC",

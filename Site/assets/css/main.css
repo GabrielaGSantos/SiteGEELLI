@@ -9,7 +9,7 @@
 
 /* Reset */
 
-	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 		margin: 0;
 		padding: 0;
 		border: 0;
@@ -1337,12 +1337,14 @@
 		font-weight: 600;
 		text-transform: uppercase;
 		color: #888;
-		display: block;
-		margin: 0 0 1em 0;
+		display: inline-table;
+		margin: 0em 0em 1em 0em;
+		width: 100%;
+
 	}
 
 	form input[type="text"],
-	form input[type="email"]
+	form input[type="email"],
 	input[type="password"],
 	form select,
 	form textarea {
@@ -1350,8 +1352,8 @@
 		-webkit-transition: background-color 0.25s ease-in-out;
 		-ms-transition: background-color 0.25s ease-in-out;
 		transition: background-color 0.25s ease-in-out;
-		-webkit-appearance: none;
-		display: block;
+		/*-webkit-appearance: none;*/
+		display: inline-table;
 		border: 0;
 		background: #e8e8e8;
 		width: 100%;
@@ -1362,7 +1364,7 @@
 	}
 
 		form input[type="text"]:focus,
-		form input[type="email"]
+		form input[type="email"],
 		input[type="password"]:focus,
 		form select:focus,
 		form textarea:focus {
@@ -1398,7 +1400,18 @@
 		border: 0;
 	}
 
+	select::-ms-expand { display: block; }
+
 /* Table */
+
+		
+		#inputSmall {
+			width: 30%;
+		}
+		
+		#inputBig {
+			width: 60%;
+		}
 
 	table {
 		width: 100%;
@@ -1620,7 +1633,7 @@
 
 		#footer-wrapper form input[type="text"],
 		#footer-wrapper form input[type="email"],
-		#footer-wrapper form input[type="password"],
+		#footer-wrapper input[type="password"],
 		#footer-wrapper form select,
 		#footer-wrapper form textarea {
 			background: #f7f7f7;
@@ -1628,7 +1641,7 @@
 
 			#footer-wrapper form input[type="text"]:focus,
 			#footer-wrapper form input[type="email"]:focus,
-			#footer-wrapper form input[type="password"]:focus,
+			#footer-wrapper input[type="password"]:focus,
 			#footer-wrapper form select:focus,
 			#footer-wrapper form textarea:focus {
 				background: #fff;
@@ -2197,6 +2210,28 @@
 				display: block;
 				padding: 1em 0 1em 0;
 			}
+
+		/* Tables */
+		#colb {
+			clear: initial;
+			width: 100%;
+		}
+
+		#cola {
+			width: 30%;
+		}
+		
+		#inputSmall, #inputBig, #inputMedium {
+			clear: initial;
+			width: 100%;
+		}
+
+		#buttonr {
+				clear: initial;
+				letter-spacing: 2px;
+				display: block;
+				padding: 1em 0 1em 0;
+		}
 
 		/* List */
 
