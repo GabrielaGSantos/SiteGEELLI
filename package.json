@@ -4,15 +4,14 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.14.1",
-    "mysql": "*",
+    "bcryptjs": "*",
+    "body-parser": "*",
     "cors": "*",
-    "bcryptjs":"*",
-    "jsonwebtoken":"*",
-    "body-parser":"*",
-    "passport":"*",
-    "passport-jwt":"*",
-    "node-model.js":"*"
+    "express": "^4.14.1",
+    "jsonwebtoken": "*",
+    "mysql": "*",
+    "passport": "*",
+    "passport-jwt": "*"
   },
   "devDependencies": {},
   "scripts": {

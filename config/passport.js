@@ -1,16 +1,29 @@
+// Importa as dependências
 const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
+const ExtractJwt = require('passport-jwt').ExtractJwt
 const User = require('../modelos/usuario');
-const config = require('../config/database');
+const database = require('../config/database');
 
-module.exports = function (passport) {
+module.exports = function(passport) {
     let opts = {};
+
+    // Extrai o token da Header
     opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
-    opts.secretOrKey = config.senha;
+
+    // Usa senha da database como assinatura do Token
+    opts.secretOrKey = database.senha;
+
+    // Cria uma estratégia de (des)autenticação
     passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
-        User.getUserById(jwt_payload._doc._id, (err, user) => {
-            if (err) return done(err, false);
-            if (user) return done(null, user);
+
+        // Procura usuário baseado no ID que o token forneceu
+        var sql = 'SELECT * FROM usuarios WHERE id = ' + jwt_payload.id;
+        console.log('[DATABASE REQUEST] ' + sql);
+        database.query(sql, function(error, results, fields) {
+
+            // Caso o usuário esteja OK, retorna OK
+            if (error) return done(error, false);
+            if (results[0].email) return done(null, results);
             else return done(null, false);
         });
     }));
