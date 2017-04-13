@@ -33,9 +33,6 @@ database.connect((err) => {
         log.info('[Site GEELLI] Conectado ao banco de dados');
 });
 
-// Define a pasta onde estão as páginas estáticas
-app.use(express.static(path.join(__dirname, 'public_html')));
-
 // Configurando rotas básicas
 // Se chamar a página principal, manda index.html
 app.get('/', (req, res) => {
@@ -75,7 +72,7 @@ app.use('/usuarios', usuarios);
 
 // Se chamar arquivo, manda arquivo
 app.get('*', (req, res) => {
-    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /' + req.params[0]);
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL ' + req.params[0]);
     res.sendFile(path.join(__dirname, 'public_html/' + req.params[0]));
 });
 

@@ -5,20 +5,17 @@
     <title>GEELLI</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Style -->
-    <link rel="stylesheet" href="/assets/css/main.min.css" />
-    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css" />
-
-    <!-- Scripts -->
-    <script src="/vendor/jquery-3.2.1/jquery-3.2.1.min.js"></script>
-    <script src="/vendor/jquery.dropotron-1.4.3/jquery.dropotron.min.js"></script>
-    <script src="/vendor/skel-3.0.1/skel.min.js"></script>
-    <script src="/vendor/skel-3.0.1/skel-layout.min.js"></script>
-    <script src="/vendor/skel-3.0.1/skel-viewport.min.js"></script>
-    <script src="/assets/js/main.min.js"></script>
-    <script src="/assets/js/util.min.js"></script>
-    <script src="/geelli-specific/js/main.min.js"></script>
-    <script src="/geelli-specific/js/cadastro.js"></script>
+    <script src="vendor/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="geelli-specific/js/main.min.js"></script>
+    <script src="geelli-specific/js/cadastro.min.js"></script>
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <link rel="stylesheet" href="vendor/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <script src="vendor/jquery.dropotron-1.4.3/jquery.dropotron.min.js"></script>
+    <script src="vendor/skel-3.0.1/skel.min.js"></script>
+    <script src="vendor/skel-3.0.1/skel-layout.min.js"></script>
+    <script src="vendor/skel-3.0.1/skel-viewport.min.js"></script>
+    <script src="assets/js/main.min.js"></script>
+    <script src="assets/js/util.min.js"></script>
 </head>
 
 <body class="homepage">
@@ -34,7 +31,7 @@
 
                 <!-- Nav -->
                 <nav id="nav" style="font-size: 18px">
-                    <ul>
+                    <ul id="navUl">
                         <li><a class="icon fa-home" href="/"><span><b>Início</b></span></a></li>
                         <li>
                             <a href="#" class="icon fa-stack-exchange"><span><b>Sobre</b></span></a>
@@ -46,7 +43,7 @@
                         <li><a class="icon fa-file-text" href="/artigos"><span><b>Artigos</b></span></a></li>
                         <li><a class="icon fa-black-tie" href="/eventos"><span><b>Eventos</b></span></a></li>
                         <li><a class="icon fa-camera" href="/multimidia"><span><b>Multimídia</b></span></a></li>
-                        <li><a id='inscricoesRedirect' class="icon fa-user-circle" href="/usuarios/login"><span id='inscricoesText'><b>Inscrições</b></span></a></li>
+                        <li id='inscricoesLine'><a id='inscricoesRedirect' class="icon fa-user-circle" href="/usuarios/login"><span id='inscricoesText'><b>Inscrições</b></span></a></li>
                     </ul>
                 </nav>
 

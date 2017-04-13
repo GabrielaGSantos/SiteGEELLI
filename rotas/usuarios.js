@@ -107,7 +107,7 @@ router.post('/autenticar', (req, res, next) => {
                 const token = jwt.sign(results[0], database.senha, {
                     expiresIn: 604800 // 1 week
                 });
-                log.info('[ACCESS LOG]' + req.body.email + ' LOGGED IN SUCCESSFULLY');
+                log.info('[ACCESS LOG] ' + req.body.email + ' LOGGED IN SUCCESSFULLY');
                 return res.status(200).type('json').send({
                     success: true,
                     token: 'JWT ' + token,
@@ -151,7 +151,7 @@ router.get('/cadastro', (req, res) => {
 });
 
 router.get('*', (req, res) => {
-    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios' + req.params[0]);
     res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
 });
 
