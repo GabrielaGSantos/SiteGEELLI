@@ -5,16 +5,16 @@ const mysql = require('mysql');
 const host = 'localhost';
 const user = 'root';
 const password = '123456';
-const schema = 'teste';
+const schema = 'geelli';
 
 
 /* ==== NÃO MEXA DAQUI PARA BAIXO ==== */
 // Cria um modelo de conexão ao banco de dados MySQL
 module.exports = mysql.createConnection({
-   host: host,
-   user: user,
-   password: password,
-   database: schema
+    host: host,
+    user: user,
+    password: password,
+    database: schema
 });
 
 // Envia os dados para chamadas externas

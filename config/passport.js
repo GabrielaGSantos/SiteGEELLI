@@ -4,6 +4,9 @@ const ExtractJwt = require('passport-jwt').ExtractJwt
 const User = require('../modelos/usuario');
 const database = require('../config/database');
 
+// create a stdout console logger
+const log = require('simple-node-logger').createSimpleLogger('../siteGEELLI.log');
+
 module.exports = function(passport) {
     let opts = {};
 
@@ -18,7 +21,7 @@ module.exports = function(passport) {
 
         // Procura usuário baseado no ID que o token forneceu
         var sql = 'SELECT * FROM usuarios WHERE id = ' + jwt_payload.id;
-        console.log('[DATABASE REQUEST] ' + sql);
+        log.info('[PASSPORT-JWT] [DATABASE REQUEST] ' + sql);
         database.query(sql, function(error, results, fields) {
 
             // Caso o usuário esteja OK, retorna OK

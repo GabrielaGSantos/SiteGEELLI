@@ -4,6 +4,9 @@ const database = require('../config/database');
 const bcrypt = require('bcryptjs');
 const table = 'usuarios';
 
+// create a stdout console logger
+const log = require('simple-node-logger').createSimpleLogger('../siteGEELLI.log');
+
 // Assume que todas as tabelas possuem um campo do tipo id com auto increment
 var User = module.exports = model(table, ['nome',
     'nascimento',
@@ -23,7 +26,7 @@ module.exports.addUser = function(newUser, callback) {
             if (err) throw err;
             newUser.senha = hash;
             sql = 'INSERT INTO usuarios SET ?';
-            console.log('[DATABASE REQUEST] ' + sql);
+            log.info('[DATABASE REQUEST] ' + sql);
             var query = database.query('INSERT INTO usuarios SET ?', newUser, function(error, results, fields) {
                 if (error) throw error;
                 return callback();
@@ -32,8 +35,8 @@ module.exports.addUser = function(newUser, callback) {
     });
 }
 
-module.exports.changeUser = function (user, callback) {
-    console.log('mundando usuario');
+module.exports.changeUser = function(user, callback) {
+    log.info('mundando usuario');
     return callback();
 }
 
