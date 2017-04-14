@@ -2,7 +2,7 @@
 const mysql = require('mysql');
 
 // Só altere as configurações do Banco de Dados aqui!
-const host = 'localhost';
+const host = '127.0.0.1';
 const user = 'root';
 const password = '123456';
 const schema = 'geelli';

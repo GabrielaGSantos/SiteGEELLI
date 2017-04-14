@@ -25,9 +25,9 @@ module.exports.addUser = function(newUser, callback) {
         bcrypt.hash(newUser.senha, salt, (err, hash) => {
             if (err) throw err;
             newUser.senha = hash;
-            sql = 'INSERT INTO usuarios SET ?';
+            sql = 'INSERT INTO ' + table + ' SET ?';
             log.info('[DATABASE REQUEST] ' + sql);
-            var query = database.query('INSERT INTO usuarios SET ?', newUser, function(error, results, fields) {
+            var query = database.query(sql, newUser, function(error, results, fields) {
                 if (error) throw error;
                 return callback();
             });
@@ -36,7 +36,7 @@ module.exports.addUser = function(newUser, callback) {
 }
 
 module.exports.changeUser = function(user, callback) {
-    log.info('mundando usuario');
+    log.info('mundando informacoes usuario');
     return callback();
 }
 
