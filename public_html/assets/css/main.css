@@ -1536,7 +1536,10 @@ input[type=reset].alt:hover {
 
 #banner-wrapper .inner {
     background: url(../../images/ifmt.jpg);
-    background-size: cover
+    color: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 #footer-wrapper form input[type=text]:focus,
@@ -2145,7 +2148,7 @@ strong {
         font-weight: 400;
         text-transform: uppercase;
         color: #888;
-        font-size: .85em
+        font-size: 1em
     }
     #navPanel .link {
         display: block;
@@ -2209,6 +2212,9 @@ strong {
     }
     #banner-wrapper {
         padding: 2em 0
+    }
+    #banner-wrapper .inner {
+        background-size: 80%;
     }
     #footer-wrapper {
         padding: 4em 20px 3em

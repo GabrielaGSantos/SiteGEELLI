@@ -9,7 +9,7 @@
     skel
         .breakpoints({
             desktop: '(min-width: 737px)',
-            tablet: '(min-width: 737px) and (max-width: 1200px)',
+            tablet: '(min-width: 737px) and (max-width: 1023px)',
             mobile: '(max-width: 736px)'
         })
         .viewport({
