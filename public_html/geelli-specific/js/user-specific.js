@@ -1,3 +1,5 @@
+var user = 'null';
+
 $(document).ready(function() {
     $('body').css('display', 'none');
     if (window.localStorage) {
@@ -12,6 +14,7 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     $('body').css('display', 'block');
+                    user = data;
                 },
                 error: function(data) {
                     location.replace('/usuarios/login');
@@ -20,3 +23,7 @@ $(document).ready(function() {
         } else location.replace('/usuarios/login');
     } else location.replace('/usuarios/login');
 });
+
+function getUser () {
+    return user;
+}

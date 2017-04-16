@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>GEELLI</title>
+    <title>GEELLI - Login</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="vendor/jquery-3.2.1/jquery-3.2.1.min.js"></script>
@@ -28,7 +28,7 @@
             <div id="header" class="container">
 
                 <!-- Logo -->
-                <h1 style="font-size: 80px" id="Título"><a>GEELLI</a></h1>
+                <h1 id="titulo"><a>GEELLI</a></h1>
                 <p style="font-size: 18px"><b>Grupo de Estudos em Ensino de Línguas e Literatura</b></p>
 
                 <!-- Nav -->
@@ -77,18 +77,24 @@
                                     <article>
                                         <section class="loginform cf">
                                             <form name="formularioLogin" accept-charset="utf-8" id="formularioLogin">
-                                                <input style="width: 50%; margin-bottom: 1em;" id="email" type="email" name="email" placeholder="E-mail" required />
-
-                                                <input style="width: 50%; margin-bottom: 1em" type="password" name="senha" placeholder="Senha" required />
-
+                                                <input id="email" style="margin-bottom: 10px;" type="email" name="email" placeholder="E-mail" required />
+                                                <input type="password" style="margin-bottom: 20px;" name="senha" placeholder="Senha" required />
                                                 <div class="controls">
-                                                    <label class="checkbox"><input type="checkbox" /> Lembrar senha</label>
-                                                    <div class="controls">
-                                                        <a href="#" class="btn btn-info" role="button">Esqueci minha senha</a><br>
-                                                    </div>
                                                     <br>
-                                                    <button class="btn" type="submit">Acessar</button>
-                                                    <button class="btn" onclick="location.href='/usuarios/cadastro';" form="null">Registrar</button>
+                                                    <table cellspacing="10" id="inputSmall">
+                                                        <colgroup>
+                                                            <col span="1" id="cola" style="width: 50%;">
+                                                            <col span="1" id="colb" style="width: 50%;">
+                                                        </colgroup>
+                                                        <tr>
+                                                            <td>
+                                                                <input id="buttons" type="submit" id="inputMedium" style="width: 95%;">
+                                                            </td>
+                                                            <td>
+                                                                <a href="/usuarios/cadastro"><input id="buttonr" type="button" align="right" value="Registrar" style="width: 100%;"></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
                                             </form>
                                         </section>

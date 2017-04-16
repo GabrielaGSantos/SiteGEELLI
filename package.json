@@ -9,6 +9,7 @@
     "cors": "*",
     "express": "^4.14.1",
     "jsonwebtoken": "*",
+    "multer": "^1.3.0",
     "mysql": "*",
     "passport": "*",
     "passport-jwt": "*",

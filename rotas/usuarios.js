@@ -140,11 +140,6 @@ router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../public_html/login.html'));
 });
 
-router.get('/inscricao', (req, res) => {
-    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/inscricao');
-    res.sendFile(path.join(__dirname, '../public_html/inscricao.html'));
-});
-
 router.get('/cadastro', (req, res) => {
     log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/cadastro');
     res.sendFile(path.join(__dirname, '../public_html/cadastro.html'));

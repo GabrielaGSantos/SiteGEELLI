@@ -12,7 +12,7 @@ $(document).ready(function() {
                 success: function(data) {
                     $("#inscricoesRedirect").attr("href", '#');
                     $("#inscricoesText").html("<b>Meus Dados<b>");
-                    $("#inscricoesLine").append("<ul><li><a class='icon fa-black-tie' href='/usuarios/meusEventos'> Minhas Inscrições</a></li><li><a class='icon fa-vcard' href='/usuarios/meusDados'> Informações Pessoais</a></li></ul>")
+                    $("#inscricoesLine").append("<ul><li><a class='icon fa-black-tie' href='/usuarios/meusEventos'> Minhas Inscrições</a></li><!--<li><a class='icon fa-vcard' href='/usuarios/meusDados'> Informações Pessoais</a></li></ul>-->")
                     $("#navUl").append("<li> <a id='logout' class='icon fa-arrow-circle-right' href='javascript:{localStorage.clear(); location.reload();}''> <span id = 'inscricoesText'> <b> Logout </b></span></a></li>");
                     // uma soluçao triste esse href = javascript, mas nao encontrei nada melhor
                 },

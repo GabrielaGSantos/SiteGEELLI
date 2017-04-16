@@ -70,6 +70,10 @@ app.get('/projeto', (req, res) => {
 const usuarios = require('./rotas/usuarios');
 app.use('/usuarios', usuarios);
 
+// Se chamar /eventos, manda /eventos
+const eventos = require('./rotas/eventos');
+app.use('/eventos', eventos);
+
 // Se chamar arquivo, manda arquivo
 app.get('*', (req, res) => {
     log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL ' + req.params[0]);

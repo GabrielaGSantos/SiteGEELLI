@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>GEELLI</title>
+    <title>GEELLI - Cadastro</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="vendor/jquery-3.2.1/jquery-3.2.1.min.js"></script>
@@ -26,7 +26,7 @@
             <div id="header" class="container">
 
                 <!-- Logo -->
-                <h1 style="font-size: 80px" id="Título"><a>GEELLI</a></h1>
+                <h1 id="titulo"><a>GEELLI</a></h1>
                 <p style="font-size: 18px"><b>Grupo de Estudos em Ensino de Línguas e Literatura</b></p>
 
                 <!-- Nav -->
@@ -53,7 +53,7 @@
 
 
         <!-- Main -->
-        <div id="main-wrapper">
+        <div id="main-wrapper" style="width: 100%;">
             <header>
                 <center>
                     <h2 style="color: #22291D;">
@@ -62,81 +62,78 @@
                 </center>
             </header>
             <div id="main" class="container">
-                <div class="row">
+                <div class="row" id="containerFormularioCadastro">
                     <!-- Excerpts -->
-                    <section>
+                    <section style="width: 100%;">
                         <ul class="divided">
                             <li>
                                 <!-- Excerpt -->
                                 <article>
                                     <form name="formularioCadastro" id="formularioCadastro">
                                         <!-- DADOS PESSOAIS-->
-                                        <fieldset>
-                                            <h2 style="font-size: 22px">
-                                                <legend style="color: #000;">
-                                                    Informações Pessoais
-                                                </legend>
-                                            </h2>
-                                            <br>
-                                            <table cellspacing="0">
-                                                <colgroup>
-                                                    <col id="cola" span="1" style="width: 30%;">
-                                                    <col id="colb" span="1" style="width: 70%;">
-                                                </colgroup>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;" for="nome">Nome Completo: </label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input id="inputBig" type="text" name="nome">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;">Nascimento: </label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input id="inputSmall" type="text" name="nascimento" size="10" maxlength="10" placeholder="dd/mm/aaaa" OnKeyPress="formatar('##/##/####', this)">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label for="rg" style="color: #22291D;">RG: </label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input type="text" id="inputSmall" name="rg" size="13" maxlength="13">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;">CPF:</label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input type="text" name="cpf" size="11" id="inputSmall" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)">
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </fieldset>
-
-                                        <br />
-                                        <!-- ENDEREÇO -->
-                                        <fieldset>
-                                            <h2 style="font-size: 22px">
-                                                <legend style="color: #000;">
-                                                    Informações de Endereço
-                                                </legend>
-                                            </h2>
-                                            <table cellspacing="10">
-                                                <colgroup>
-                                                    <col span="1" id="cola" style="width: 20%;">
-                                                    <col span="1" id="colb" style="width: 80%;">
-                                                </colgroup>
-                                                <br>
+                                        <h2 style="font-size: 22px">
+                                            <legend style="color: #000;">
+                                                Informações Pessoais
+                                            </legend>
+                                        </h2>
+                                        <br>
+                                        <table cellspacing="0">
+                                            <colgroup>
+                                                <col id="cola" span="1" style="width: 20%;">
+                                                <col id="colb" span="1" style="width: 120%;">
+                                            </colgroup>
+                                            <tr>
                                                 <td>
-                                                    <label style="color: #22291D;" for="estado">Estado:</label>
+                                                    <label style="color: #22291D;" for="nome">Nome Completo: </label>
                                                 </td>
                                                 <td align="left">
-                                                    <select name="estado" id="inputSmall">
+                                                    <input id="inputBig" type="text" name="nome">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label style="color: #22291D;">Nascimento: </label>
+                                                </td>
+                                                <td align="left">
+                                                    <input id="inputSmall" type="text" name="nascimento" size="10" maxlength="10" placeholder="dd/mm/aaaa" OnKeyPress="formatar('##/##/####', this)">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label for="rg" style="color: #22291D;">RG: </label>
+                                                </td>
+                                                <td align="left">
+                                                    <input type="text" id="inputSmall" name="rg" size="13" maxlength="13">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label style="color: #22291D;">CPF:</label>
+                                                </td>
+                                                <td align="left">
+                                                    <input type="text" name="cpf" size="11" id="inputSmall" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <br />
+                                        <!-- ENDEREÇO -->
+
+                                        <h2 style="font-size: 22px">
+                                            <legend style="color: #000;">
+                                                Informações de Endereço
+                                            </legend>
+                                        </h2>
+                                        <table cellspacing="10">
+                                            <colgroup>
+                                                <col span="1" id="cola" style="width: 20%;">
+                                                <col span="1" id="colb" style="width: 80%;">
+                                            </colgroup>
+                                            <br>
+                                            <td>
+                                                <label style="color: #22291D;" for="estado">Estado:</label>
+                                            </td>
+                                            <td align="left">
+                                                <select name="estado" id="inputSmall">
 																				<option value="null"></option>  
 																				<option value="ac">Acre</option> 
 																				<option value="al">Alagoas</option> 
@@ -166,85 +163,85 @@
 																				<option value="sp">São Paulo</option> 
 																				<option value="to">Tocantins</option> 
 																			</select>
+                                            </td>
+                                            <tr>
+                                                <td>
+                                                    <label style="color: #22291D;" for="cidade">Cidade: </label>
                                                 </td>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;" for="cidade">Cidade: </label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input type="text" name="cidade" id="inputSmall">
-                                                    </td>
-                                                </tr>
+                                                <td align="left">
+                                                    <input type="text" name="cidade" id="inputSmall">
+                                                </td>
+                                            </tr>
 
-                                            </table>
-                                            <h2 style="font-size: 22px">
-                                                <legend style="color: #000;">
-                                                    Informações Profissionais
-                                                </legend>
-                                            </h2>
-                                            <table cellspacing="10">
-                                                <colgroup>
-                                                    <col span="1" style="width: 20%;">
-                                                    <col span="1" style="width: 80%;">
-                                                </colgroup>
-                                                <br>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;" for="instituicao">Instituição: </label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input type="text" name="instituicao" id="inputBig">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;" for="instituicao">Área de Formação: </label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input type="text" name="formacao" id="inputBig">
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </fieldset>
+                                        </table>
+                                        <h2 style="font-size: 22px">
+                                            <legend style="color: #000;">
+                                                Informações Profissionais
+                                            </legend>
+                                        </h2>
+                                        <table cellspacing="10">
+                                            <colgroup>
+                                                <col span="1" style="width: 20%;">
+                                                <col span="1" style="width: 80%;">
+                                            </colgroup>
+                                            <br>
+                                            <tr>
+                                                <td>
+                                                    <label style="color: #22291D;" for="instituicao">Instituição: </label>
+                                                </td>
+                                                <td align="left">
+                                                    <input type="text" name="instituicao" id="inputBig">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label style="color: #22291D;" for="instituicao">Área de Formação: </label>
+                                                </td>
+                                                <td align="left">
+                                                    <input type="text" name="formacao" id="inputBig">
+                                                </td>
+                                            </tr>
+                                        </table>
+
                                         <br />
 
                                         <!-- DADOS DE LOGIN -->
-                                        <fieldset>
-                                            <legend style="color: #000;">
-                                                <h2 style="font-size: 22px">Informações de Login</h2>
-                                            </legend>
-                                            <table cellspacing="10">
-                                                <colgroup>
-                                                    <col span="1" id="cola" style="width: 20%;">
-                                                    <col span="1" id="colb" style="width: 80%;">
-                                                </colgroup>
-                                                <br>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;" for="email">E-mail: </label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input type="text" name="email" id="inputBig">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;" for="pass">Senha: </label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input type="password" name="senha" id="inputSmall">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;" for="passconfirm">Confirme a senha: </label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input type="password" name="confirmacaoSenha" id="inputSmall">
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </fieldset>
+
+                                        <legend style="color: #000;">
+                                            <h2 style="font-size: 22px">Informações de Login</h2>
+                                        </legend>
+                                        <table cellspacing="10">
+                                            <colgroup>
+                                                <col span="1" id="cola" style="width: 20%;">
+                                                <col span="1" id="colb" style="width: 80%;">
+                                            </colgroup>
+                                            <br>
+                                            <tr>
+                                                <td>
+                                                    <label style="color: #22291D;" for="email">E-mail: </label>
+                                                </td>
+                                                <td align="left">
+                                                    <input type="text" name="email" id="inputBig">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label style="color: #22291D;" for="pass">Senha: </label>
+                                                </td>
+                                                <td align="left">
+                                                    <input type="password" name="senha" id="inputSmall">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label style="color: #22291D;" for="passconfirm">Confirme a senha: </label>
+                                                </td>
+                                                <td align="left">
+                                                    <input type="password" name="confirmacaoSenha" id="inputSmall">
+                                                </td>
+                                            </tr>
+                                        </table>
+
                                         <br />
                                         <table cellspacing="10" id="inputSmall">
                                             <colgroup>

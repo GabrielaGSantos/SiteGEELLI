@@ -255,6 +255,10 @@ table {
     }
 }
 
+.loginform {
+    width: 100%;
+}
+
 @media screen and (min-width:737px) and (max-width:1200px) {
     .container.\31 25\25 {
         width: 100%;
@@ -1751,7 +1755,7 @@ strong {
         padding: 14em 0 7em
     }
     #header h1 {
-        font-size: 3em;
+        font-size: 5em;
         letter-spacing: 13px
     }
     #header p,
@@ -1897,6 +1901,12 @@ strong {
     .professorEnorme {
         height: 725px;
     }
+    .loginform {
+        width: 50%;
+    }
+    #containerFormularioCadastro {
+        width: 140%;
+    }
 }
 
 @media screen and (min-width:737px) and (max-width:1200px) {
@@ -1941,7 +1951,7 @@ strong {
         padding: 9em 0 4em
     }
     #header h1 {
-        font-size: 2em
+        font-size: 5em
     }
     #header p {
         margin: 1.5em 0 0
@@ -1955,6 +1965,9 @@ strong {
     #copyright {
         margin-top: 5em;
         padding-top: 2em
+    }
+    #containerFormularioCadastro {
+        width: 120%;
     }
 }
 
@@ -2223,7 +2236,7 @@ strong {
         padding: 6em 0 4em
     }
     #header h1 {
-        font-size: 2em;
+        font-size: 5em;
         letter-spacing: 8px;
         line-height: 1.25em
     }
