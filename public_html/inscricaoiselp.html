@@ -7,12 +7,14 @@
 <html>
 
 <head>
-    <title>GEELLI</title>
+    <title>GEELLI - Inscrição I SELP</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="vendor/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
     <script src="geelli-specific/js/main.min.js"></script>
-    <script src="geelli-specific/js/inscricao.min.js"></script>
+    <script src="geelli-specific/js/user-specific.min.js"></script>
+    <script src="geelli-specific/js/inscricaoiselp.min.js"></script>
     <link rel="stylesheet" href="assets/css/main.min.css" />
     <link rel="stylesheet" href="vendor/font-awesome-4.7.0/css/font-awesome.min.css" />
     <script src="vendor/jquery.dropotron-1.4.3/jquery.dropotron.min.js"></script>
@@ -61,7 +63,7 @@
         <div id="main-wrapper">
             <header>
                 <h2 style="color: #22291D;">
-                    <center> INSCRIÇÃO DO EVENTO</center>
+                    <center> I SELP - INSCRIÇÃO</center>
                 </h2>
             </header>
             <div id="main" class="container">
@@ -74,7 +76,8 @@
                             <li>
                                 <!-- Excerpt -->
                                 <article>
-                                    <form>
+                                    <form ref="arquivo" id="arquivo" action='/eventos/iselp/uploadResumo' method='post' encType="multipart/form-data"></form>
+                                    <form id='formularioInscricao'>
                                         <!-- ENDEREÇO -->
                                         <fieldset>
                                             <legend style="color: #000;">
@@ -87,11 +90,11 @@
                                                 </colgroup>
                                                 <br>
                                                 <td>
-                                                    <label style="color: #22291D;" for="enviouTrabalho">Modalidade:</label>
+                                                    <label style="color: #22291D;" for="modalidade">Modalidade:</label>
                                                 </td>
                                                 <td align="left">
-                                                    <select name="nomeTrabalho" id="inputBig"> 
-                                                        <option></option>
+                                                    <select name="modalidade" id="inputBig"> 
+                                                        <option value="null"></option>
                                                         <option value='0'>Ouvinte</option> 
                                                         <option value='1'>Comunicação em Seção de Relatos</option> 
                                                     </select>
@@ -101,7 +104,7 @@
                                                         <label style="color: #22291D;" for="nomeTrabalho">Título do Trabalho: </label>
                                                     </td>
                                                     <td align="left">
-                                                        <input type="text" name="titulo" id="inputBig">
+                                                        <input type="text" name="nomeTrabalho" id="inputBig">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -109,7 +112,7 @@
                                                         <label style="color: #22291D;" for="resumo">Envio do Arquivo do Resumo (Formato Word ou PDF):</label>
                                                     </td>
                                                     <td>
-                                                        <input type="file" name="resumo" accept=".pdf, .doc, .docx, .odf" id="inputSmall">
+                                                        <input type="file" name="resumo" accept=".pdf, .doc, .docx, .odf" id="inputSmall" form="arquivo">
                                                     </td>
                                                 </tr>
                                             </table>

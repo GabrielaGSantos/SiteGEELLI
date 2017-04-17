@@ -146,6 +146,12 @@ textarea {
     color: #777
 }
 
+#mensagemTextArea {
+    display: block;
+    resize: none;
+    max-height: 200px;
+}
+
 sub,
 sup {
     font-size: .8em;
@@ -1474,6 +1480,7 @@ input[type=reset].alt:active {
 
 #buttonr,
 #buttons,
+#botaoEnviarMensagem,
 .button.alt:hover,
 button.alt:hover,
 button:hover,

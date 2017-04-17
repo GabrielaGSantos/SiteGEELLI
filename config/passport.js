@@ -26,7 +26,8 @@ module.exports = function(passport) {
 
             // Caso o usuário esteja OK, retorna OK
             if (error) return done(error, false);
-            if (results[0].email) return done(null, results);
+            if (results[0])
+                if (results[0].email) return done(null, results);
             else return done(null, false);
         });
     }));

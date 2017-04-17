@@ -74,9 +74,13 @@ app.use('/usuarios', usuarios);
 const eventos = require('./rotas/eventos');
 app.use('/eventos', eventos);
 
+// Se chamar /mensagens, manda /mensagens
+const mensagens = require('./rotas/mensagens');
+app.use('/mensagens', mensagens);
+
 // Se chamar arquivo, manda arquivo
 app.get('*', (req, res) => {
-    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL ' + req.params[0]);
+    //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL ' + req.params[0]);
     res.sendFile(path.join(__dirname, 'public_html/' + req.params[0]));
 });
 

@@ -24,6 +24,6 @@ $(document).ready(function() {
     } else location.replace('/usuarios/login');
 });
 
-function getUser () {
+function getUser() {
     return user;
 }
