@@ -41,9 +41,14 @@ app.get('/', (req, res) => {
 });
 
 // Se chamar a página estática, manda página estática
-app.get('/artigos', (req, res) => {
-    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /artigos');
-    res.sendFile(path.join(__dirname, 'public_html/artigos.html'));
+app.get('/artigosLinguagem', (req, res) => {
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /artigosLinguagem');
+    res.sendFile(path.join(__dirname, 'public_html/artigosLinguagem.html'));
+});
+
+app.get('/artigosLiteratura', (req, res) => {
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /artigosLiteratura');
+    res.sendFile(path.join(__dirname, 'public_html/artigosLiteratura.html'));
 });
 
 app.get('/eventos', (req, res) => {
