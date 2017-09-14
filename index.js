@@ -76,6 +76,21 @@ app.get('/noticias', (req, res) => {
     res.sendFile(path.join(__dirname, 'public_html/noticias.html'));
 });
 
+app.get('/GEELLI', (req, res) => {
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /noticias');
+    res.sendFile(path.join(__dirname, 'public_html/GEELLI.html'));
+});
+
+app.get('/ISELP', (req, res) => {
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /noticias');
+    res.sendFile(path.join(__dirname, 'public_html/ISELP.html'));
+});
+
+app.get('/algumasFotos', (req, res) => {
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /noticias');
+    res.sendFile(path.join(__dirname, 'public_html/algumasFotos.html'));
+});
+
 // Se chamar /usuarios, manda /usuarios
 const usuarios = require('./rotas/usuarios');
 app.use('/usuarios', usuarios);
