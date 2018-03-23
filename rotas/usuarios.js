@@ -82,8 +82,9 @@ router.post('/alterar', (req, res, next) => {
 });
 
 // Profile
-router.get('/getUser', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.user[0].email + ' ON URL /getUser');
+router.get('/getUser', passport.authenticate('jwt', database.senha), (req, res, next) => {
+    
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.user.email + ' ON URL /getUser');
     return res.json(req.user[0]);
 });
 
@@ -104,13 +105,14 @@ router.post('/autenticar', (req, res, next) => {
         User.compararSenhas(senha, results[0].senha, (err, isMatch) => {
             if (err) throw err;
             if (isMatch) {
-                const token = jwt.sign(results[0], database.senha, {
+                const token = jwt.sign(JSON.parse(JSON.stringify(results[0])), database.senha, {
                     expiresIn: 604800 // 1 week
                 });
                 log.info('[ACCESS LOG] ' + req.body.email + ' LOGGED IN SUCCESSFULLY');
+               
                 return res.status(200).type('json').send({
                     success: true,
-                    token: 'JWT ' + token,
+                    token: 'bearer ' + token,
                     user: {
                         id: results[0].id,
                         nome: results[0].nome,

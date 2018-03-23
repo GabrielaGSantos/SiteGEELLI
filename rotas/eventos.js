@@ -104,10 +104,47 @@ router.get('/iselp/cancelarInscricao', (req, res) => {
     })
 });
 
+router.get('/xipoesiapedepassagem/inscricao', (req, res) => {
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscricao');
+    res.sendFile(path.join(__dirname, '../public_html/inscricaoxisarau.html'));
+});
+
+router.post('/xipoesiapedepassagem/inscrever', (req, res) => {
+    log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscrever');
+    let new_inscricao = new Inscricao(database, {
+        userId: Number(req.body.userId),
+        nomeTrabalho: req.body.nomeTrabalho,
+        status: "Inscrito"
+    });
+
+    console.log(new_inscricao);
+    var sql = 'SELECT * FROM xipoesiapedepassagem WHERE userId = ' + database.escape(new_inscricao.userId);
+    log.info('[DATABASE REQUEST] ' + sql);
+    database.query(sql, function(error, results, fields) {
+        if (error) throw error;
+        if (results[0]) {
+            log.info('[ACCESS LOG] ERROR TO SUBSCRIBE ' + req.body.userId);
+            return res.status(500).type('json').send({ success: false, error: true });
+        } else Inscricao.inscreverUser(new_inscricao, () => {
+            log.info('[ACCESS LOG] SUCCESFULLY SUBSCRIBED ' + req.body.userId);
+            return res.status(200).type('json').send({ success: true });
+        });
+    });
+});
+
+
 router.get('/iselp/*', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
     res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
 });
+
+router.get('/xipoesiapedepassagem/*', (req, res) => {
+    //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
+    res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
+});
+
+
+
 
 router.get('*', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios' + req.params[0]);

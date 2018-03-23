@@ -12,7 +12,13 @@ const database = require('./config/database');
 const log = require('simple-node-logger').createSimpleLogger('../siteGEELLI.log');
 
 // Define a porta 
-const porta = process.env.port || 80;
+const porta = process.env.port || 8080;
+
+
+// Passport é o módulo que cuida da parte de autorizar ou não o usuário a acessar as páginas
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
 
 // Chama algumas funções importantes
 app.use(cors());
@@ -23,14 +29,16 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Tentando conectar no banco de dados
-database.connect((err) => {
+database.getConnection((err, conn) => {
     log.info('[Site GEELLI] Se conectanto ao banco de dados ' + database.user + '@' + database.host + ':3306');
     if (err) {
         log.info('[Site GEELLI] Não foi possível se conectar ao banco de dados');
         log.info('[Site GEELLI] Encerrando servidor...');
         process.exit();
-    } else
+    } else {
         log.info('[Site GEELLI] Conectado ao banco de dados');
+        conn.release
+    } 
 });
 
 // Configurando rotas básicas
@@ -112,8 +120,3 @@ app.get('*', (req, res) => {
 app.listen(porta, (err) => {
     log.info('[Site GEELLI] Servidor ouvindo porta ' + porta);
 });
-
-// Passport é o módulo que cuida da parte de autorizar ou não o usuário a acessar as páginas
-app.use(passport.initialize());
-app.use(passport.session());
-require('./config/passport')(passport);

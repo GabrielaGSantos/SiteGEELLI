@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<!--
+	Strongly Typed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>GEELLI - Inscrição XI Saurau "A Poesia Pé-De Passagem"</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="vendor/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script src="geelli-specific/js/main.min.js"></script>
+    <script src="geelli-specific/js/user-specific.min.js"></script>
+    <script src="geelli-specific/js/inscricaoxisarau.js"></script>
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <link rel="stylesheet" href="vendor/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <script src="vendor/jquery.dropotron-1.4.3/jquery.dropotron.min.js"></script>
+    <script src="vendor/skel-3.0.1/skel.min.js"></script>
+    <script src="vendor/skel-3.0.1/skel-layout.min.js"></script>
+    <script src="vendor/skel-3.0.1/skel-viewport.min.js"></script>
+    <script src="assets/js/main.min.js"></script>
+    <script src="assets/js/util.min.js"></script>
+</head>
+
+<body class="homepage">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <div id="header-wrapper">
+            <div id="header" class="container">
+
+                <!-- Logo -->
+                <h1 id="titulo"><a>GEELLI</a></h1>
+                <p style="font-size: 18px"><b>Grupo de Estudos em Ensino de Línguas e Literatura</b></p>
+
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul id="navUl">
+                        <li><a class="icon fa-home" href="/"><span><b>Início</b></span></a></li>
+                        <li>
+                            <a href="#" class="icon fa-stack-exchange"><span><b>Sobre</b></span></a>
+                            <ul>
+                                <li><a class="icon fa-archive" href="/projeto"> Projeto do Grupo</a></li>
+                                <li><a class="icon fa-users" href="/integrantes"> Integrantes</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="icon fa-file-text" href="#"><span><b>Artigos</b></span></a>
+                            <ul>
+                                <li><a class="icon fa-font" href="/artigosLinguagem"> Línguas</a></li>
+                                <li><a class="icon fa-leanpub" href="/artigosLiteratura"> Literatura</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="icon fa-black-tie" href="/eventos"><span><b>Eventos</b></span></a></li>
+                        <li><a class="icon fa-camera" href="/multimidia"><span><b>Multimídia</b></span></a></li>
+                        <li id='inscricoesLine'><a id='inscricoesRedirect' class="icon fa-user-circle" href="/usuarios/login"><span id='inscricoesText'><b>Inscrições</b></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+        <HR style="height:2px; border:none; color:#000; background-color:#000; margin-top: 0px; margin-bottom: 0px;">
+
+
+        <!-- Main -->
+        <div id="main-wrapper">
+            <header>
+                <h2 style="color: #22291D;">
+                    <center> XI SARAU LÍTERO-MUSICAL - A POESIA PÉ-DE PASSAGEM</center>
+                    <br>
+                    <center>INSCRIÇÃO DE APRESENTAÇÕES</center>
+                </h2>
+            </header>
+            <div id="main" class="container">
+                <div class="row">
+
+
+                    <!-- Excerpts -->
+                    <section style="width: 100%;">
+                        <ul class="divided">
+                            <li>
+                                <!-- Excerpt -->
+                                <article>
+                                    <form ref="arquivo" id="arquivo" action='/eventos/iselp/uploadResumo' method='post' encType="multipart/form-data"></form>
+                                    <form id='formularioInscricao'>
+                                        <!-- ENDEREÇO -->
+                                        <fieldset>
+                                            <legend style="color: #000;">
+                                                <h2 style="font-size: 22px">Informações da Apresentação</h2>
+                                            </legend>
+                                            <table cellspacing="10">
+                                                <colgroup>
+                                                    <col id="cola" span="1" style="width: 30%;">
+                                                    <col id="colb" span="1" style="width: 70%;">
+                                                </colgroup>
+                                                <br>
+                                                <td>
+                                                    <label style="color: #22291D;" for="modalidade">Modalidade:</label>
+                                                </td>
+                                                <td align="left">
+                                                    <select name="modalidade" id="inputBig"> 
+                                                        <option value="null"></option>
+                                                        <option value='1'>Música</option> 
+                                                        <option value='2'>Declamação</option> 
+                                                        <option value='3'>Performance</option> 
+                                                        <option value='4'>Teatro</option> 
+                                                        <option value='5'>Outro</option>
+                                                    </select>
+                                                </td>
+                                                <tr>
+                                                    <td>
+                                                        <label style="color: #22291D;" for="nomeTrabalho">Título ou Descrição da Apresentação: </label>
+                                                    </td>
+                                                    <td align="left">
+                                                        <input type="text" name="nomeTrabalho" id="inputBig">
+                                                    </td>
+                                                </tr>
+                                                
+                                            </table>
+                                        </fieldset>
+                                        <br/>
+                                        <table cellspacing="10" id="inputSmall">
+                                            <colgroup>
+                                                <col span="1" id="cola" style="width: 50%;">
+                                                <col span="1" id="colb" style="width: 50%;">
+                                            </colgroup>
+                                            <tr>
+                                                <td>
+                                                    <input id="buttons" type="submit" id="inputMedium" style="width: 95%;">
+                                                </td>
+                                                <td>
+                                                    <input id="buttonr" type="reset" align="right" value="Limpar" id="inputMedium" style="width: 100%;">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </article>
+                            </li>
+
+
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-wrapper">
+        <div id="footer" class="container">
+            <header>
+                <h2>Perguntas ou Comentários? <strong>Entre em Contato:</strong></h2>
+            </header>
+            <div class="row">
+                <div class="6u 12u(mobile)">
+                    <section>
+                        <form id="sendMessage" method="post" action="#">
+                            <div class="row 50%">
+                                <div class="6u 12u(mobile)">
+                                    <input name="nome" placeholder="Nome" type="text" />
+                                </div>
+                                <div class="6u 12u(mobile)">
+                                    <input name="email" placeholder="Email" type="email" />
+                                </div>
+                            </div>
+                            <div class="row 50%">
+                                <div class="12u">
+                                    <textarea id="mensagemTextArea" name="mensagem" placeholder="Mensagem" rows="15" cols="50" data-role="none"></textarea>
+                                </div>
+                            </div>
+                            <div class="row 50%">
+                                <div class="12u">
+                                    <input id="botaoEnviarMensagem" type="submit" name="botaoEnviarMensagem" value="Enviar Mensagem" />
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+                <div class="6u 12u(mobile)">
+                    <section>
+                        <div class="row">
+                            <div class="12u 12u(mobile)" style="margin-bottom: 0;">
+                                <ul class="icons">
+                                    <li class="icon fa-home">
+                                        Rua Professora Zulmira Canavarros, N° 93 <br /> Centro, 78005-200 <br /> Cuiabá -MT <br />
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="6u 12u(mobile)">
+                                <ul class="icons">
+                                    <li class="icon fa-phone">
+                                        <a href="callto:065 98109-9619">(65) 9 8109-9619</a>
+                                    </li>
+                                    <li class="icon fa-envelope">
+                                        <a href="mailto:geelli@cba.ifmt.edu.br">geelli@cba.ifmt.edu.br</a>
+                                    </li>
+                            </div>
+                            <div class="4u 12u(mobile)">
+                                <ul class="icons">
+                                    <li class="icon fa-facebook">
+                                        <a href="http://facebook.com/GEELLI.IFMT">facebook.com/GEELLI.IFMT</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div id="copyright" class="container">
+            <ul class="links">
+                <li>&copy; GEELLI. All rights reserved.</li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

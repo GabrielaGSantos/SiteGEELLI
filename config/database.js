@@ -4,13 +4,14 @@ const mysql = require('mysql');
 // Só altere as configurações do Banco de Dados aqui!
 const host = '127.0.0.1';
 const user = 'root';
-const password = 'gv011216';
+const password = '7mbt9vur' //'gv011216';
 const schema = 'geelli';
 
 
 /* ==== NÃO MEXA DAQUI PARA BAIXO ==== */
 // Cria um modelo de conexão ao banco de dados MySQL
-module.exports = mysql.createConnection({
+module.exports = mysql.createPool({
+    connectionLimit : 10,
     host: host,
     user: user,
     password: password,
