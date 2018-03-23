@@ -22,24 +22,20 @@ $(document).ready(function () {
         var url = "/eventos/xipoesiapedepassagem/inscrever";
 
         e.preventDefault();
-        
+
         if (validateForm()) {
             var jqXHR = jQuery.ajax({
                 type: "POST",
                 url: url,
                 async: true,
                 cache: false,
-                data: $("#formularioInscricao").serialize() + "&userId=" + getUser().id+ "&userName=" + getUser().nome,
+                data: $("#formularioInscricao").serialize() + "&userId=" + getUser().id + "&userName=" + getUser().nome,
                 dataType: 'json',
                 cache: false,
                 timeout: 5000,
                 success: function (data) {
-                    var modalidade = document.forms["formularioInscricao"]["modalidade"].value;
-                    if (modalidade == '1') {
-                        uploadResumo();
-                    } else {
-                        window.location = '/usuarios/meusEventos';
-                    }
+                    window.location = '/usuarios/meusEventos';
+
                 },
                 error: function () {
                     alert('Erro ao concluir sua solicitação. Tente novamente.')

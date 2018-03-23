@@ -1683,8 +1683,7 @@ input[type=reset].alt:hover {
 
 #header-wrapper {
     position: relative;
-    /*background: url(../../images/livro.jpg);*/
-    background: white;
+    background: url(../../images/livro.jpg);
     background-size: cover
 }
 

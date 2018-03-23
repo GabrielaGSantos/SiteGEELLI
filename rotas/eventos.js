@@ -18,6 +18,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../modelos/usuario');
 const database = require('../config/database');
 const Inscricao = require('../modelos/inscricaoISelp');
+const InscricaoXISarau = require('../modelos/inscricaoXIPoesia')
 const path = require('path');
 
 
@@ -111,21 +112,22 @@ router.get('/xipoesiapedepassagem/inscricao', (req, res) => {
 
 router.post('/xipoesiapedepassagem/inscrever', (req, res) => {
     log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscrever');
-    let new_inscricao = new Inscricao(database, {
-        userId: Number(req.body.userId),
-        nomeTrabalho: req.body.nomeTrabalho,
-        status: "Inscrito"
+    let new_inscricao = new InscricaoXISarau(database, {
+        id_usuario: Number(req.body.userId),
+        id_modalidade: Number(req.body.modalidade),
+        descricao: req.body.nomeTrabalho
     });
-
+    if (new_inscricao.id)
+    delete new_inscricao.id
     console.log(new_inscricao);
-    var sql = 'SELECT * FROM xipoesiapedepassagem WHERE userId = ' + database.escape(new_inscricao.userId);
+    var sql = 'SELECT * FROM inscricaoxisarau WHERE id_usuario = ' + database.escape(new_inscricao.id_usuario);
     log.info('[DATABASE REQUEST] ' + sql);
     database.query(sql, function(error, results, fields) {
         if (error) throw error;
         if (results[0]) {
             log.info('[ACCESS LOG] ERROR TO SUBSCRIBE ' + req.body.userId);
             return res.status(500).type('json').send({ success: false, error: true });
-        } else Inscricao.inscreverUser(new_inscricao, () => {
+        } else InscricaoXISarau.inscreverUser(new_inscricao, () => {
             log.info('[ACCESS LOG] SUCCESFULLY SUBSCRIBED ' + req.body.userId);
             return res.status(200).type('json').send({ success: true });
         });
