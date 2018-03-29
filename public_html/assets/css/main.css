@@ -2039,7 +2039,7 @@ strong {
     #sidebar>article:first-child,
     #sidebar>section:first-child {
         margin: 0;
-        padding: 0
+        padding: 0;
     }
     #copyright {
         margin-top: 6em;

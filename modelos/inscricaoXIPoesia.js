@@ -9,12 +9,6 @@ const table = 'inscricaoxisarau';
 // create a stdout console logger
 const log = require('simple-node-logger').createSimpleLogger('../siteGEELLI.log');
 
-// Assume que todas as tabelas possuem um campo do tipo id com auto increment
-var inscricao = module.exports = model(table, ['id_usuario',
-    'id_modalidade',
-    'descricao'
-]);
-
 module.exports.inscreverUser = function(newInscricao, callback) {
     sql = 'INSERT INTO ' + table + ' SET ?';
     log.info('[DATABASE REQUEST] ' + sql);

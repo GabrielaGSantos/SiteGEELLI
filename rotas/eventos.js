@@ -112,14 +112,12 @@ router.get('/xipoesiapedepassagem/inscricao', (req, res) => {
 
 router.post('/xipoesiapedepassagem/inscrever', (req, res) => {
     log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscrever');
-    let new_inscricao = new InscricaoXISarau(database, {
+    let new_inscricao = {
         id_usuario: Number(req.body.userId),
         id_modalidade: Number(req.body.modalidade),
         descricao: req.body.nomeTrabalho
-    });
-    if (new_inscricao.id)
-    delete new_inscricao.id
-    console.log(new_inscricao);
+    };
+    
     var sql = 'SELECT * FROM inscricaoxisarau WHERE id_usuario = ' + database.escape(new_inscricao.id_usuario);
     log.info('[DATABASE REQUEST] ' + sql);
     database.query(sql, function(error, results, fields) {
@@ -134,6 +132,28 @@ router.post('/xipoesiapedepassagem/inscrever', (req, res) => {
     });
 });
 
+router.post('/xipoesiapedepassagem/getInscricao', (req, res) => {
+    log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/xipoesiapedepassagem/getInscricao');
+    var sql = 'SELECT * FROM inscricaoxisarau WHERE id_usuario = ' + database.escape(req.body.userId);
+    log.info('[DATABASE REQUEST] ' + sql);
+    database.query(sql, function(error, results, fields) {
+        if (error) throw error;
+        if (!results[0]) {
+            log.info('[ACCESS LOG] QUERY ERROR: ' + req.body.userId + ' is not subscribed');
+            return res.status(200).type('json').send({ success: true, msg: null });
+        } else {
+            log.info('[ACCESS LOG] QUERY SUCCESSFULL: ' + req.body.userId + ' is subscribed');
+            return res.status(200).type('json').send({ success: true, msg: results[0] });
+        }
+    });
+});
+
+router.get('/xipoesiapedepassagem/cancelar', (req, res) => {
+    //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
+    InscricaoXISarau.cancelarInscricao(Number(req.query.userId), () => {
+        return res.redirect('/usuarios/meusEventos?javascript:alert("Inscricao Cancelada");');
+    })
+});
 
 router.get('/iselp/*', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
@@ -144,8 +164,6 @@ router.get('/xipoesiapedepassagem/*', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
     res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
 });
-
-
 
 
 router.get('*', (req, res) => {

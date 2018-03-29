@@ -1,21 +1,21 @@
-$(document).ready(function() {
-    botao(function() {
-        jQuery(document).ready(function($) {
+$(document).ready(function () {
+    botao(function () {
+        jQuery(document).ready(function ($) {
             //open popup
-            $('.cd-popup-trigger').on('click', function(event) {
+            $('.cd-popup-trigger').on('click', function (event) {
                 event.preventDefault();
                 $('.cd-popup').addClass('is-visible');
             });
 
             //close popup
-            $('.cd-popup').on('click', function(event) {
+            $('.cd-popup').on('click', function (event) {
                 if ($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup')) {
                     event.preventDefault();
                     $(this).removeClass('is-visible');
                 }
             });
             //close popup when clicking the esc keyboard button
-            $(document).keyup(function(event) {
+            $(document).keyup(function (event) {
                 if (event.which == '27') {
                     $('.cd-popup').removeClass('is-visible');
                 }
@@ -29,14 +29,34 @@ function botao(retorno) {
     var userId = getUser().id;
     $.ajax({
         type: "POST",
-        url: "/eventos/iselp/getInscricao",
+        url: "/eventos/xipoesiapedepassagem/getInscricao",
         data: "userId=" + userId,
         dataType: 'json',
         async: false,
-        success: function(data) {
+        success: function (data) {
             if (data.msg) {
                 $("#evento1").html('<p>Nenhum evento disponível</p><br>');
-                $(".eventosInscritor").html(' <div id="iscritoEvento1"><h3><a href="artigos/1a Circular - I SELP - IFMT.pdf">I SELP - Simpósio sobre o Ensino de Língua Portuguesa</a></h3><p>O Grupo de Estudos em Ensino de Línguas e Literatura - GEELLI e o Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso - Campus Cuiabá tem a satisfação de anunciar o Sucesso do I SELP - Simpósio sobre o Ensino de Língua Portuguesa, com o tema "Língua e Linguagens: mediação e construção de saberes para a docência na educação profissional". O evento foi realizado na sede do IFMT - Campus Cuiabá no período de 22 a 24 de junho de 2017. O GEELLI agradece sua Participação.</p><ul class="actions"><li><a href="#"  class="button icon fa-file">Encerrado</a></li><li><a</a></li></ul></div');
+                console.log(data.msg.descricao)
+                let modalidade = "";
+                switch(data.msg.id_modalidade) {
+                    case 1:
+                        modalidade = "Música"
+                    break;
+                    case 2:
+                        modalidade = "Declamação"
+                    break;
+                    case 3:
+                        modalidade = "Performance"
+                    break;
+                    case 4:
+                        modalidade = "Teatro"
+                    break;
+                    case 5:
+                        modalidade = "Outro"
+                    break;
+                }
+                console.log(modalidade)
+                $(".eventosInscritor").html(' <div id="iscritoEvento1"><h3><a href="#">XI Sarau Lítero-Musical - A Poesia Pé-De Passagem</a></h3><p><b>Modalidade:</b> '+modalidade+'<br><b>Descrição ou Título da Apresentação:</b> ' + data.msg.descricao+' </p><ul class="actions"><li><a href="/eventos/xipoesiapedepassagem/cancelar?userId=' + getUser().id +'"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></ul></div');
 
             }
         }
