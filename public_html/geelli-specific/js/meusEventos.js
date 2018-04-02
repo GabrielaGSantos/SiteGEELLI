@@ -27,6 +27,8 @@ $(document).ready(function () {
 
 function botao(retorno) {
     var userId = getUser().id;
+    let inscricao1 = undefined;
+    let inscricao2 = undefined;
     $.ajax({
         type: "POST",
         url: "/eventos/xipoesiapedepassagem/getInscricao",
@@ -35,32 +37,63 @@ function botao(retorno) {
         async: false,
         success: function (data) {
             if (data.msg) {
-                $("#evento1").html('<p>Nenhum evento disponível</p><br>');
+                $("#evento1").html('');
                 console.log(data.msg.descricao)
                 let modalidade = "";
-                switch(data.msg.id_modalidade) {
+                switch (data.msg.id_modalidade) {
                     case 1:
                         modalidade = "Música"
-                    break;
+                        break;
                     case 2:
                         modalidade = "Declamação"
-                    break;
+                        break;
                     case 3:
                         modalidade = "Performance"
-                    break;
+                        break;
                     case 4:
                         modalidade = "Teatro"
-                    break;
+                        break;
                     case 5:
                         modalidade = "Outro"
-                    break;
+                        break;
                 }
                 console.log(modalidade)
-                $(".eventosInscritor").html(' <div id="iscritoEvento1"><h3><a href="#">XI Sarau Lítero-Musical - A Poesia Pé-De Passagem</a></h3><p><b>Modalidade:</b> '+modalidade+'<br><b>Descrição ou Título da Apresentação:</b> ' + data.msg.descricao+' </p><ul class="actions"><li><a href="/eventos/xipoesiapedepassagem/cancelar?userId=' + getUser().id +'"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></ul></div');
-
+                $(".eventosInscrito1").html(' <div id="iscritoEvento1"><h3><a href="#">XI Sarau Lítero-Musical - A Poesia Pé-De Passagem</a></h3><p>O Grupo de Estudos em Ensino de Línguas e Literatura - GEELLI e o Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso - Campus Cuiabá tem a satisfação de anunciar o XI SARAU LÍTERO-MUSICAL - A POESIA PÉ-DE PASSAGEM no dia 28 de abril, na Sala de Projeções do IFMT- Campus Cuiabá, a partir das 8h. Trata-se de um evento em que a arte será abordada numa perspectiva diversificada, abrangendo a literatura por meio de declamação de poesias, música, performance, e a arte plástica será desenvolvida através da mostra de obras produzidas durante as aulas de arte-educação.<br><h3 style="font-size: 14px">Minha Inscrição</h3><b>Modalidade:</b> ' + modalidade + '<br><b>Descrição ou Título da Apresentação:</b> ' + data.msg.descricao + ' </p><ul class="actions"><li><a href="/eventos/xipoesiapedepassagem/cancelar?userId=' + getUser().id + '"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></ul></div');
+                inscricao1 = true;
+            } else {
+                inscricao1 = false;
             }
+            $.ajax({
+                type: "POST",
+                url: "/eventos/minicursoi/getInscricao",
+                data: "userId=" + userId,
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data.msg) {
+                        $("#evento2").html('');
+                        let turno;
+
+                        if (data.msg.turno == "M")
+                            turno = "08h00 às 11h00"
+                        else
+                            turno = "14h00 às 17h00"
+
+                        console.log(data)
+                        $(".eventosInscrito2").html('<div id="iscritoEvento1"><h3><a href="#">Minicurso</a></h3><b>Turma: </b>' + turno + '<ul class="actions"><li><a href="/eventos/minicursoi/cancelar?userId=' + getUser().id + '"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></ul></div');
+                        inscricao2 = true;
+                    } else {
+                        inscricao2 = false;
+                    }
+                    if (inscricao1 && inscricao2) {
+                        $("#separador").html("<hr style='border-color: grey; border-width: 1px;'></hr>")
+                        $("#evento1").html('Nenhuma Inscrição Disponível');
+                    }
+                }
+            });
         }
     });
+
     retorno();
 }
 

@@ -19,6 +19,7 @@ const User = require('../modelos/usuario');
 const database = require('../config/database');
 const Inscricao = require('../modelos/inscricaoISelp');
 const InscricaoXISarau = require('../modelos/inscricaoXIPoesia')
+const InscricaoMinicursoI = require('../modelos/inscricaominicursoi')
 const path = require('path');
 
 
@@ -110,6 +111,11 @@ router.get('/xipoesiapedepassagem/inscricao', (req, res) => {
     res.sendFile(path.join(__dirname, '../public_html/inscricaoxisarau.html'));
 });
 
+router.get('/minicursoi/inscricao', (req, res) => {
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscricao');
+    res.sendFile(path.join(__dirname, '../public_html/inscricaominicursoi.html'));
+});
+
 router.post('/xipoesiapedepassagem/inscrever', (req, res) => {
     log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscrever');
     let new_inscricao = {
@@ -132,9 +138,47 @@ router.post('/xipoesiapedepassagem/inscrever', (req, res) => {
     });
 });
 
+
+router.post('/minicursoi/inscrever', (req, res) => {
+    log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscrever');
+    let new_inscricao = {
+        id_usuario: Number(req.body.userId),
+        turno: req.body.turno
+    };
+    
+    var sql = 'SELECT * FROM inscricaominicursoi WHERE id_usuario = ' + database.escape(new_inscricao.id_usuario);
+    log.info('[DATABASE REQUEST] ' + sql);
+    database.query(sql, function(error, results, fields) {
+        if (error) throw error;
+        if (results[0]) {
+            log.info('[ACCESS LOG] ERROR TO SUBSCRIBE ' + req.body.userId);
+            return res.status(500).type('json').send({ success: false, error: true });
+        } else InscricaoMinicursoI.inscreverUser(new_inscricao, () => {
+            log.info('[ACCESS LOG] SUCCESFULLY SUBSCRIBED ' + req.body.userId);
+            return res.status(200).type('json').send({ success: true });
+        });
+    });
+});
+
 router.post('/xipoesiapedepassagem/getInscricao', (req, res) => {
     log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/xipoesiapedepassagem/getInscricao');
     var sql = 'SELECT * FROM inscricaoxisarau WHERE id_usuario = ' + database.escape(req.body.userId);
+    log.info('[DATABASE REQUEST] ' + sql);
+    database.query(sql, function(error, results, fields) {
+        if (error) throw error;
+        if (!results[0]) {
+            log.info('[ACCESS LOG] QUERY ERROR: ' + req.body.userId + ' is not subscribed');
+            return res.status(200).type('json').send({ success: true, msg: null });
+        } else {
+            log.info('[ACCESS LOG] QUERY SUCCESSFULL: ' + req.body.userId + ' is subscribed');
+            return res.status(200).type('json').send({ success: true, msg: results[0] });
+        }
+    });
+});
+
+router.post('/minicursoi/getInscricao', (req, res) => {
+    log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/minicursoi/getInscricao');
+    var sql = 'SELECT * FROM inscricaominicursoi WHERE id_usuario = ' + database.escape(req.body.userId);
     log.info('[DATABASE REQUEST] ' + sql);
     database.query(sql, function(error, results, fields) {
         if (error) throw error;
@@ -155,6 +199,14 @@ router.get('/xipoesiapedepassagem/cancelar', (req, res) => {
     })
 });
 
+
+router.get('/minicursoi/cancelar', (req, res) => {
+    //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
+    InscricaoMinicursoI.cancelarInscricao(Number(req.query.userId), () => {
+        return res.redirect('/usuarios/meusEventos?javascript:alert("Inscricao Cancelada");');
+    })
+});
+
 router.get('/iselp/*', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
     res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
@@ -164,6 +216,12 @@ router.get('/xipoesiapedepassagem/*', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
     res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
 });
+
+router.get('/minicursoi/*', (req, res) => {
+    //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
+    res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
+});
+
 
 
 router.get('*', (req, res) => {
