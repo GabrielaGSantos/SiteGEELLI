@@ -80,7 +80,7 @@ function botao(retorno) {
                             turno = "14h00 às 17h00"
 
                         console.log(data)
-                        $(".eventosInscrito2").html('<div id="iscritoEvento2"><h3><a href="#">Minicurso "ENCENANDO A POESIA" - XI Sarau Lítero-Musical</a></h3><p><strong style="color:#636967">Data da oficina: </strong> 27 de abril de 2018 (6ª feira)<br><strong style="color:#636967">Horário Matutino:</strong> 8h às 11h<br><strong style="color:#636967"> Horário Vespertino:</strong> 14h às 17h </p>' + turno + '<ul class="actions"><li><a href="/eventos/minicursoi/cancelar?userId=' + getUser().id + '"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></ul></div');
+                        $(".eventosInscrito2").html('<div id="iscritoEvento2"><h3><a href="#">Minicurso "ENCENANDO A POESIA" - XI Sarau Lítero-Musical</a></h3><p><strong style="color:#636967">Data da oficina: </strong> 27 de abril de 2018 (6ª feira)<br><strong style="color:#636967"> Turno: </strong> ' + turno + '</p><ul class="actions"><li><a href="/eventos/minicursoi/cancelar?userId=' + getUser().id + '"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></ul></div');
                         inscricao2 = true;
                     } else {
                         inscricao2 = false;
