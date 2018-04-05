@@ -12,7 +12,7 @@ const database = require('./config/database');
 const log = require('simple-node-logger').createSimpleLogger('../siteGEELLI.log');
 
 // Define a porta 
-const porta = process.env.port || 8080;
+const porta = process.env.port || 80;
 
 
 // Passport é o módulo que cuida da parte de autorizar ou não o usuário a acessar as páginas
