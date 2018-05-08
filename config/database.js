@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const host = '127.0.0.1';
 const user = 'root';
 const password = 'gv011216';
+//const password = '18081996';
 const schema = 'geelli';
 
 

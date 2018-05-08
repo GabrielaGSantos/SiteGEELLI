@@ -58,7 +58,7 @@ function botao(retorno) {
                         break;
                 }
                 console.log(modalidade)
-                $(".eventosInscrito1").html(' <div id="iscritoEvento1"><h3><a href="#">XI Sarau Lítero-Musical - A Poesia Pé-De Passagem</a></h3><p>O Grupo de Estudos em Ensino de Línguas e Literatura - GEELLI e o Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso - Campus Cuiabá tem a satisfação de anunciar o XI SARAU LÍTERO-MUSICAL - A POESIA PÉ-DE PASSAGEM no dia 28 de abril, na Sala de Projeções do IFMT- Campus Cuiabá, a partir das 8h. Trata-se de um evento em que a arte será abordada numa perspectiva diversificada, abrangendo a literatura por meio de declamação de poesias, música, performance, e a arte plástica será desenvolvida através da mostra de obras produzidas durante as aulas de arte-educação.<br><h3 style="font-size: 14px">Minha Inscrição</h3><b>Modalidade:</b> ' + modalidade + '<br><b>Descrição ou Título da Apresentação:</b> ' + data.msg.descricao + ' </p><ul class="actions"><li><a href="/eventos/xipoesiapedepassagem/cancelar?userId=' + getUser().id + '"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></ul></div');
+                $(".eventosInscrito1").html(' <div id="iscritoEvento1"><h3><a href="#">XI Sarau Lítero-Musical - A Poesia Pé-De Passagem</a></h3><p>O Grupo de Estudos em Ensino de Línguas e Literatura - GEELLI e o Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso - Campus Cuiabá tem a satisfação de anunciar o XI SARAU LÍTERO-MUSICAL - A POESIA PÉ-DE PASSAGEM no dia 08 de junho, na Sala de Projeções do IFMT- Campus Cuiabá, a partir das 17h. Trata-se de um evento em que a arte será abordada numa perspectiva diversificada, abrangendo a literatura por meio de declamação de poesias, música, performance, e a arte plástica será desenvolvida através da mostra de obras produzidas durante as aulas de arte-educação.<br><h3 style="font-size: 14px">Minha Inscrição</h3><b>Modalidade:</b> ' + modalidade + '<br><b>Descrição ou Título da Apresentação:</b> ' + data.msg.descricao + ' </p><ul class="actions"><li><a href="/eventos/xipoesiapedepassagem/cancelar?userId=' + getUser().id + '"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></ul></div');
                 inscricao1 = true;
             } else {
                 inscricao1 = false;
@@ -75,12 +75,12 @@ function botao(retorno) {
                         let turno;
 
                         if (data.msg.turno == "M")
-                            turno = "08h00 às 11h00"
+                            turno = "09h00 às 11h00"
                         else
-                            turno = "14h00 às 17h00"
+                            turno = "14h00 às 16h00"
 
                         console.log(data)
-                        $(".eventosInscrito2").html('<div id="iscritoEvento2"><h3><a href="#">Oficina "ENCENANDO A POESIA" - XI Sarau Lítero-Musical</a></h3><p><strong style="color:#636967">Data da oficina: </strong> 27 de abril de 2018 (6ª feira)<br><strong style="color:#636967"> Turno: </strong> ' + turno + '</p><ul class="actions"><li><a href="/eventos/minicursoi/cancelar?userId=' + getUser().id + '"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></ul></div');
+                        $(".eventosInscrito2").html('<div id="iscritoEvento2"><h3><a href="#">Oficina "ENCENANDO A POESIA" - XI Sarau Lítero-Musical</a></h3><p><strong style="color:#636967">Data da oficina: </strong> 04 de junho de 2018 (2ª feira)<br><strong style="color:#636967"> Turno: </strong> ' + turno + '</p><ul class="actions"><li><a href="/eventos/minicursoi/cancelar?userId=' + getUser().id + '"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></ul></div');
                         inscricao2 = true;
                     } else {
                         inscricao2 = false;
