@@ -99,6 +99,11 @@ app.get('/algumasFotos', (req, res) => {
     res.sendFile(path.join(__dirname, 'public_html/algumasFotos.html'));
 });
 
+app.get('/sarauXI', (req, res) => {
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /noticias');
+    res.sendFile(path.join(__dirname, 'public_html/sarauXI.html'));
+});
+
 // Se chamar /usuarios, manda /usuarios
 const usuarios = require('./rotas/usuarios');
 app.use('/usuarios', usuarios);
