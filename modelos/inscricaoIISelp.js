@@ -1,10 +1,10 @@
 // Devido a urgência do primeiro evento, criei um banco de dados específico para ele
 
 const mysql = require('mysql');
-const model = require('../modelos/model');
+const model = require('./model');
 const database = require('../config/database');
 const bcrypt = require('bcryptjs');
-const table = 'inscricoesiselp';
+const table = 'inscricoesiiselp';
 
 // create a stdout console logger
 const log = require('simple-node-logger').createSimpleLogger('../siteGEELLI.log');
@@ -12,6 +12,7 @@ const log = require('simple-node-logger').createSimpleLogger('../siteGEELLI.log'
 // Assume que todas as tabelas possuem um campo do tipo id com auto increment
 var inscricao = module.exports = model(table, ['userId',
     'userName',
+    'tipoInscricao',
     'enviouTrabalho',
     'nomeTrabalho',
     'caminhoLocalTrabalho',

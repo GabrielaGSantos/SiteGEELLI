@@ -17,7 +17,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const User = require('../modelos/usuario');
 const database = require('../config/database');
-const Inscricao = require('../modelos/inscricaoISelp');
+const Inscricao = require('../modelos/inscricaoIISelp');
 const InscricaoXISarau = require('../modelos/inscricaoXIPoesia')
 const InscricaoMinicursoI = require('../modelos/inscricaominicursoi')
 const path = require('path');
@@ -26,11 +26,12 @@ const path = require('path');
 // create a stdout console logger
 const log = require('simple-node-logger').createSimpleLogger('../siteGEELLI.log');
 
-router.post('/iselp/inscrever', (req, res) => {
-    log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscrever');
+router.post('/iiselp/inscrever', (req, res) => {
+    log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp/inscrever');
     let new_inscricao = new Inscricao(database, {
         userId: Number(req.body.userId),
         userName: req.body.userName,
+        tipoIscricao: Number(req.body.tipoInscricao),
         enviouTrabalho: Number(req.body.modalidade),
         nomeTrabalho: req.body.nomeTrabalho || 'undefined',
         caminhoLocalTrabalho: 'NULL',
@@ -38,7 +39,7 @@ router.post('/iselp/inscrever', (req, res) => {
     });
 
     console.log(new_inscricao);
-    var sql = 'SELECT * FROM inscricoesiselp WHERE userId = ' + database.escape(new_inscricao.userId);
+    var sql = 'SELECT * FROM inscricoesiiselp WHERE userId = ' + database.escape(new_inscricao.userId);
     log.info('[DATABASE REQUEST] ' + sql);
     database.query(sql, function(error, results, fields) {
         if (error) throw error;
@@ -52,12 +53,12 @@ router.post('/iselp/inscrever', (req, res) => {
     });
 });
 
-router.post('/iselp/uploadResumo', upload.single('resumo'), (req, res) => {
-    log.info('[ACCESS LOG] UPLOAD REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/uploadResumo');
+router.post('/iiselp/uploadResumo', upload.single('resumo'), (req, res) => {
+    log.info('[ACCESS LOG] UPLOAD REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp/uploadResumo');
     if (req.file) {
         log.info('[SERVER LOG] UPLOADED FILE ' + req.file.originalname + ' AS ' + req.file.path);
 
-        var sql = 'SELECT * FROM inscricoesiselp WHERE userId = ' + database.escape(req.body.userId);
+        var sql = 'SELECT * FROM inscricoesiiselp WHERE userId = ' + database.escape(req.body.userId);
         log.info('[DATABASE REQUEST] ' + sql);
         database.query(sql, function(error, results, fields) {
             if (error) throw error;
@@ -75,14 +76,14 @@ router.post('/iselp/uploadResumo', upload.single('resumo'), (req, res) => {
     }
 });
 
-router.get('/iselp/inscricao', (req, res) => {
-    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscricao');
-    res.sendFile(path.join(__dirname, '../public_html/inscricaoiselp.html'));
+router.get('/iiselp/inscricao', (req, res) => {
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp/inscricao');
+    res.sendFile(path.join(__dirname, '../public_html/inscricaoiiselp.html'));
 });
 
-router.post('/iselp/getInscricao', (req, res) => {
-    log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/getInscricao');
-    var sql = 'SELECT * FROM inscricoesiselp WHERE userId = ' + database.escape(req.body.userId);
+router.post('/iiselp/getInscricao', (req, res) => {
+    log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp/getInscricao');
+    var sql = 'SELECT * FROM inscricoesiiselp WHERE userId = ' + database.escape(req.body.userId);
     log.info('[DATABASE REQUEST] ' + sql);
     database.query(sql, function(error, results, fields) {
         if (error) throw error;
@@ -99,7 +100,7 @@ router.post('/iselp/getInscricao', (req, res) => {
     });
 });
 
-router.get('/iselp/cancelarInscricao', (req, res) => {
+router.get('/iiselp/cancelarInscricao', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
     Inscricao.cancelarInscricao(Number(req.query.userId), () => {
         return res.redirect('/usuarios/meusEventos?javascript:alert("Inscricao Cancelada");');
@@ -107,12 +108,12 @@ router.get('/iselp/cancelarInscricao', (req, res) => {
 });
 
 router.get('/xipoesiapedepassagem/inscricao', (req, res) => {
-    //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscricao');
+    //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp/inscricao');
     res.sendFile(path.join(__dirname, '../public_html/inscricaoxisarau.html'));
 });
 
 router.get('/minicursoi/inscricao', (req, res) => {
-    //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iselp/inscricao');
+    //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp/inscricao');
     res.sendFile(path.join(__dirname, '../public_html/inscricaominicursoi.html'));
 });
 
@@ -207,7 +208,7 @@ router.get('/minicursoi/cancelar', (req, res) => {
     })
 });
 
-router.get('/iselp/*', (req, res) => {
+router.get('/iiselp/*', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
     res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
 });
