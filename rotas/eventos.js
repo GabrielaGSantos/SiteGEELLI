@@ -20,6 +20,7 @@ const database = require('../config/database');
 const Inscricao = require('../modelos/inscricaoIISelp');
 const InscricaoXISarau = require('../modelos/inscricaoXIPoesia')
 const InscricaoMinicursoI = require('../modelos/inscricaominicursoi')
+const InscricaoIISelp = require('../modelos/inscricaoIISelp')
 const path = require('path');
 
 
@@ -80,6 +81,13 @@ router.get('/iiselp/inscricao', (req, res) => {
     log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp/inscricao');
     res.sendFile(path.join(__dirname, '../public_html/inscricaoiiselp.html'));
 });
+
+router.get('/iiselp/cancelar', (req, res) => {
+    InscricaoIISelp.cancelarInscricao(Number(req.query.userId), () => {
+        return res.redirect('/usuarios/meusEventos?javascript:alert("Inscricao Cancelada");');
+    })
+});
+
 
 router.post('/iiselp/getInscricao', (req, res) => {
     log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp/getInscricao');
