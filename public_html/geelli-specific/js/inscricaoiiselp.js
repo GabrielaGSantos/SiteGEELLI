@@ -1,20 +1,20 @@
 function validateForm() {
     var validation = true;
 
-    var modalidade = document.forms["formularioInscricao"]["modalidade"].value;
-    if (modalidade == 'null' && validation) {
-        alert('Selecione uma modalidade');
+    var tipoInscricao = document.forms["formularioInscricao"]["tipoInscricao"].value;
+    if (tipoInscricao == 'null' && validation) {
+        alert('Selecione uma tipoInscricao');
         validation = false;
     }
 
     var nomeTrabalho = document.forms["formularioInscricao"]["nomeTrabalho"].value;
-    if (modalidade == '1' && validation && nomeTrabalho == '') {
+    if (tipoInscricao == '1' && validation && nomeTrabalho == '') {
         alert('Digite o nome do trabalho a ser enviado');
         validation = false;
     }
 
     var resumo = document.forms["arquivo"]["resumo"].value;
-    if (modalidade == '1' && validation && resumo == '') {
+    if (tipoInscricao == '1' && validation && resumo == '') {
         alert('Selecione um arquivo contendo o Resumo');
         validation = false;
     }
@@ -29,6 +29,7 @@ function hideTrabalhos() {
     $("label[for=resumo]").hide();
     $("input[name=nomeTrabalho]").val('');
     $("input[name=resumo]").val('');
+    $(".dataApresentacao").hide()
 }
 
 function showTrabalhos() {
@@ -36,11 +37,12 @@ function showTrabalhos() {
     $("label[for=nomeTrabalho]").show();
     $("input[name=resumo]").show();
     $("label[for=resumo]").show();
+    $(".dataApresentacao").show()
 }
 
 $(document).ready(function () {
     hideTrabalhos();
-    $("select[name=modalidade]").on('change', function () {
+    $("select[name=tipoInscricao]").on('change', function () {
         var optionSelected = $("option:selected", this);
         if (this.value == '1')
             showTrabalhos();
@@ -49,7 +51,7 @@ $(document).ready(function () {
     });
 
     $('#formularioInscricao').submit(function (e) {
-        var url = "/eventos/iselp/inscrever";
+        var url = "/eventos/iiselp/inscrever";
 
         e.preventDefault();
         
@@ -72,8 +74,8 @@ $(document).ready(function () {
                 cache: false,
                 timeout: 5000,
                 success: function (data) {
-                    var modalidade = document.forms["formularioInscricao"]["modalidade"].value;
-                    if (modalidade == '1') {
+                    var tipoInscricao = document.forms["formularioInscricao"]["tipoInscricao"].value;
+                    if (tipoInscricao == '1') {
                         uploadResumo();
                     } else {
                         window.location = '/usuarios/meusEventos';

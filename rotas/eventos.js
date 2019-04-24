@@ -31,8 +31,8 @@ router.post('/iiselp/inscrever', (req, res) => {
     let new_inscricao = new Inscricao(database, {
         userId: Number(req.body.userId),
         userName: req.body.userName,
-        tipoIscricao: Number(req.body.tipoInscricao),
-        enviouTrabalho: Number(req.body.modalidade),
+        tipoInscricao: Number(req.body.tipoInscricao),
+        enviouTrabalho: Number(req.body.tipoInscricao),
         nomeTrabalho: req.body.nomeTrabalho || 'undefined',
         caminhoLocalTrabalho: 'NULL',
         status: "Inscrito"
