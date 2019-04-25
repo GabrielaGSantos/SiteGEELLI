@@ -54,7 +54,7 @@ function botao(retorno) {
 
                 console.log(data.msg)
                 if (data.msg.nomeTrabalho != 'undefined') {
-                    $("#dadosTrabalho").html(`<li><b>Data da Apresentação</b>: 13/06/2019</li><li><b>Nome do Trabalho</b>: ${data.msg.nomeTrabalho}</li>`)
+                    $("#dadosTrabalho").html(`<li><b>Nome do Trabalho</b>: ${data.msg.nomeTrabalho}</li>`)
                 }
 
                 $('#tituloPagina').html(`<center><h2>Minhas Inscrições</h2></center>`)
