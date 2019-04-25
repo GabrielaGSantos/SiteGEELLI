@@ -84,7 +84,7 @@ router.get('/iiselp/inscricao', (req, res) => {
 
 router.get('/iiselp/cancelar', (req, res) => {
     InscricaoIISelp.cancelarInscricao(Number(req.query.userId), () => {
-        return res.redirect('/usuarios/meusEventos?javascript:alert("Inscricao Cancelada");');
+        return res.redirect('/usuarios/meusEventos');
     })
 });
 
