@@ -21,11 +21,90 @@ const Inscricao = require('../modelos/inscricaoIISelp');
 const InscricaoXISarau = require('../modelos/inscricaoXIPoesia')
 const InscricaoMinicursoI = require('../modelos/inscricaominicursoi')
 const InscricaoIISelp = require('../modelos/inscricaoIISelp')
+const InscricaoIISelpMinicurso = require('../modelos/inscricaoIISelpMinicurso')
 const path = require('path');
 
 
 // create a stdout console logger
 const log = require('simple-node-logger').createSimpleLogger('../siteGEELLI.log');
+
+router.post('/iiselp-minicurso/inscrever', (req, res) => {
+    log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp-minicurso/inscrever');
+    let new_inscricao = new InscricaoIISelpMinicurso(database, {
+        id_usuario: Number(req.body.id_usuario),
+        nome_minicurso: req.body.nome_minicurso,
+        enviouTrabalho: 1,
+        caminhoLocalTrabalho: 'NULL',
+    });
+
+    console.log(new_inscricao);
+    var sql = 'SELECT * FROM inscricoesiiselpminicurso WHERE id_usuario = ' + database.escape(new_inscricao.userId);
+    log.info('[DATABASE REQUEST] ' + sql);
+    database.query(sql, function(error, results, fields) {
+        if (error) throw error;
+        if (results[0]) {
+            log.info('[ACCESS LOG] ERROR TO SUBSCRIBE ' + req.body.userId);
+            return res.status(500).type('json').send({ success: false, error: true });
+        } else InscricaoIISelpMinicurso.inscreverUser(new_inscricao, () => {
+            log.info('[ACCESS LOG] SUCCESFULLY SUBSCRIBED ' + req.body.userId);
+            return res.status(200).type('json').send({ success: true });
+        });
+    });
+});
+
+router.post('/iiselp-minicurso/uploadResumo', upload.single('resumo'), (req, res) => {
+    log.info('[ACCESS LOG] UPLOAD REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp-minicurso/uploadResumo');
+    if (req.file) {
+        log.info('[SERVER LOG] UPLOADED FILE ' + req.file.originalname + ' AS ' + req.file.path);
+
+        var sql = 'SELECT * FROM inscricoesiiselpminicurso WHERE id_usuario = ' + database.escape(req.body.userId);
+        log.info('[DATABASE REQUEST] ' + sql);
+        database.query(sql, function(error, results, fields) {
+            if (error) throw error;
+            if (!results[0]) {
+                log.info('[ACCESS LOG] ERROR ADD FILE UPLOAD INFORMATION TO ' + req.body.userId);
+                return res.status(500).type('json').send({ success: false, error: true });
+            } else InscricaoIISelp.adicionarArquivo(req.file.path, req.body.userId, () => {
+                log.info('[ACCESS LOG] SUCCESFULLY ADDED FILE UPLOAD INFORMATION TO ' + req.body.userId);
+                return res.redirect('/usuarios/meusEventos');
+            });
+        });
+    } else {
+        log.info('[ACCESS LOG] UPLOAD REQUEST FROM ' + req.connection.remoteAddress + ' FAILED. REASON: No file to upload');
+        return res.redirect("javascript:alert(231);");
+    }
+});
+
+router.get('/iiselp-minicurso/inscricao', (req, res) => {
+    log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp-minicurso/inscricao');
+    res.sendFile(path.join(__dirname, '../public_html/inscricaoiiselp-minicurso.html'));
+});
+
+router.get('/iiselp-minicurso/cancelar', (req, res) => {
+    InscricaoIISelpMinicurso.cancelarInscricao(Number(req.query.userId), () => {
+        return res.redirect('/usuarios/meusEventos');
+    })
+});
+
+
+router.post('/iiselp-minicurso/getInscricao', (req, res) => {
+    log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp/getInscricao');
+    var sql = 'SELECT * FROM inscricoesiiselpminicurso WHERE id_usuario = ' + database.escape(req.body.id_usuario);
+    log.info('[DATABASE REQUEST] ' + sql);
+    database.query(sql, function(error, results, fields) {
+        if (error) throw error;
+        if (!results[0]) {
+            log.info('[ACCESS LOG] QUERY ERROR: ' + req.body.userId + ' is not subscribed');
+            return res.status(200).type('json').send({ success: true, msg: null });
+        } else {
+            log.info('[ACCESS LOG] QUERY SUCCESSFULL: ' + req.body.userId + ' is subscribed');
+            if (results[0].enviouTrabalho[0] == 1 && results[0].caminhoLocalTrabalho == "NULL") {
+                results[0].status = "ERRO! Entre em contato com o GEELLI";
+                return res.status(200).type('json').send({ success: true, msg: results[0] });
+            } else return res.status(200).type('json').send({ success: true, msg: results[0] });
+        }
+    });
+});
 
 router.post('/iiselp/inscrever', (req, res) => {
     log.info('[ACCESS LOG] POST REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /eventos/iiselp/inscrever');
@@ -221,6 +300,11 @@ router.get('/iiselp/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
 });
 
+router.get('/iiselp-minicurso/*', (req, res) => {
+    //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
+    res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
+});
+
 router.get('/xipoesiapedepassagem/*', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
     res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
@@ -230,8 +314,6 @@ router.get('/minicursoi/*', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios/' + req.params[0]);
     res.sendFile(path.join(__dirname, '../public_html/' + req.params[0]));
 });
-
-
 
 router.get('*', (req, res) => {
     //log.info('[ACCESS LOG] GET REQUEST FROM ' + req.connection.remoteAddress + ' ON URL /usuarios' + req.params[0]);
