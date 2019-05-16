@@ -29,7 +29,7 @@ $(document).ready(function () {
 function botao(retorno) {
     var userId = getUser().id;
     let inscricao1 = undefined;
-    let inscricao2 = undefined
+    let inscricao2 = true
 
     $.ajax({
         type: "POST",
@@ -67,31 +67,31 @@ function botao(retorno) {
         }
     });
 
-    $.ajax({
-        type: "POST",
-        url: "/eventos/iiselp-minicurso/getInscricao",
-        data: "id_usuario=" + userId,
-        dataType: 'json',
-        async: false,
-        success: function (data) {
-            if (data.msg) {
-                $("#evento2").html('');
+    // $.ajax({
+    //     type: "POST",
+    //     url: "/eventos/iiselp-minicurso/getInscricao",
+    //     data: "id_usuario=" + userId,
+    //     dataType: 'json',
+    //     async: false,
+    //     success: function (data) {
+    //         if (data.msg) {
+    //             $("#evento2").html('');
 
-                $(".eventosInscrito2").html('<div id="iscritoEvento2"><h3><a href="#">II SELP - Propostas de Minicurso</a></h3><p><p> Dentre as atividades planejadas para o II SELP, haverá um período de 3 horas para de minicursos com o tema “Literatura, ensino e tecnologias: leitores e leituras no século XXI". A realização destes minicursos é aberta à comunidade. Caso tenha interesse, submeta o projeto do seu minicurso para avaliação.</p><h3 style="font-size: 14px">Minha Inscrição</h3><div id="dadosMinicurso"></ul></div><div id="cancelar"<br><br><li><a style="background-color: #3f48cc" href="/eventos/iiselp-minicurso/cancelar?userId=' + getUser().id + '"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></div></div>');
-                inscricao2 = true;
-                if (inscricao1) $("#tituloPagina").hide()
+    //             $(".eventosInscrito2").html('<div id="iscritoEvento2"><h3><a href="#">II SELP - Propostas de Minicurso</a></h3><p><p> Dentre as atividades planejadas para o II SELP, haverá um período de 3 horas para de minicursos com o tema “Literatura, ensino e tecnologias: leitores e leituras no século XXI". A realização destes minicursos é aberta à comunidade. Caso tenha interesse, submeta o projeto do seu minicurso para avaliação.</p><h3 style="font-size: 14px">Minha Inscrição</h3><div id="dadosMinicurso"></ul></div><div id="cancelar"<br><br><li><a style="background-color: #3f48cc" href="/eventos/iiselp-minicurso/cancelar?userId=' + getUser().id + '"  class="button icon fa-file">Cancelar</a></li><li><a</a></li></div></div>');
+    //             inscricao2 = true;
+    //             if (inscricao1) $("#tituloPagina").hide()
 
-                if (data.msg.nome_minicurso != 'undefined') {
-                    $("#dadosMinicurso").html(`<li><b>Nome do Minicurso</b>: ${data.msg.nome_minicurso}</li>`)
-                }
+    //             if (data.msg.nome_minicurso != 'undefined') {
+    //                 $("#dadosMinicurso").html(`<li><b>Nome do Minicurso</b>: ${data.msg.nome_minicurso}</li>`)
+    //             }
 
-                $("#separador").show()
+    //             $("#separador").show()
 
-            } else {
-                inscricao2 = false;
-            }
-        }
-    });
+    //         } else {
+    //             inscricao2 = false;
+    //         }
+    //     }
+    // });
 
     retorno();
 }
