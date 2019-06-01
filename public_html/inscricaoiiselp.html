@@ -81,7 +81,6 @@
                             <li>
                                 <!-- Excerpt -->
                                 <article>
-                                    <form ref="arquivo" id="arquivo" action='/eventos/iiselp/uploadResumo' method='post' encType="multipart/form-data"></form>
                                     <form id='formularioInscricao'>
                                         <!-- ENDEREÇO -->
                                         <fieldset>
@@ -101,30 +100,10 @@
                                                     <select name="tipoInscricao" id="inputBig"> 
                                                         <option value="null"></option>
                                                         <option value='0'>Ouvinte</option> 
-                                                        <option value='1'>Apresentação de Trabalho</option> 
                                                     </select>
                                                 </td>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;" for="nomeTrabalho">Título do Trabalho: </label>
-                                                    </td>
-                                                    <td align="left">
-                                                        <input type="text" name="nomeTrabalho" id="inputBig">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <label style="color: #22291D;" for="resumo">Envio do Arquivo do Resumo (Formato Word ou PDF):</label>
-                                                    </td>
-                                                    <td>
-                                                        <input type="file" name="resumo" accept=".pdf, .doc, .docx, .odf" id="inputSmall" form="arquivo">
-                                                    </td>
-                                                </tr>
                                             </table>
                                         </fieldset>
-                                        <div>
-                                            * O resumo deve seguir o modelo apresentado na página do evento
-                                        </div>
                                         <br/>
                                         <table cellspacing="10" id="inputSmall">
                                             <colgroup>
