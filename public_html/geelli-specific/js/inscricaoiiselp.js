@@ -11,7 +11,6 @@ function validateForm() {
 }
 
 $(document).ready(function () {
-    hideTrabalhos();
     $("select[name=tipoInscricao]").on('change', function () {
         var optionSelected = $("option:selected", this);
     });
